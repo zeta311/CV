@@ -1,0 +1,905 @@
+
+/* ========================================
+   1. DESIGN SYSTEM & RESET
+======================================== */
+
+:root {
+  --navy: #142c4e;
+  --navy-light: #203e65;
+  --teal: #16877f;
+  --teal-light: #e7f5f2;
+  --text: #293648;
+  --muted: #64748b;
+  --background: #f3f6fa;
+  --white: #ffffff;
+  --border: #e2e8f0;
+  --shadow: 0 10px 32px rgba(20, 44, 78, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--background);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #48b9af;
+  outline-offset: 4px;
+}
+
+.container {
+  width: min(1080px, 90%);
+  margin: 0 auto;
+}
+
+
+/* ========================================
+   2. NAVIGATION
+======================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  color: var(--navy);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.brand span {
+  color: var(--teal);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--teal);
+}
+
+
+/* ========================================
+   3. HERO SECTION
+======================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 95px 0 90px;
+  color: var(--white);
+  background: var(--navy);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: -190px;
+  right: -100px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 45px rgba(255, 255, 255, 0.025),
+    0 0 0 90px rgba(255, 255, 255, 0.02);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  animation: fadeUp 0.7s ease both;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #92e0d5;
+  font-size: 0.77rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 25px;
+  height: 2px;
+  background: #62c9bb;
+}
+
+.hero h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
+  font-size: clamp(2.5rem, 6vw, 4.2rem);
+  line-height: 1.15;
+  letter-spacing: -2px;
+}
+
+.hero h1 span {
+  color: #8cdbd0;
+}
+
+.location {
+  margin-bottom: 22px;
+  color: #a9c2d8;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.hero-description {
+  max-width: 700px;
+  margin-bottom: 30px;
+  color: #d4deeb;
+  font-size: 1.02rem;
+  line-height: 1.95;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+
+/* ========================================
+   4. BUTTONS
+======================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 21px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  color: #123c43;
+  background: #8cdbd0;
+}
+
+.button-primary:hover {
+  background: #a9e9df;
+}
+
+.button-secondary {
+  color: var(--white);
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.button-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* ========================================
+   5. MAIN CONTENT
+======================================== */
+
+.page-content {
+  padding-top: 65px;
+  padding-bottom: 75px;
+}
+
+.section {
+  margin-bottom: 55px;
+  scroll-margin-top: 100px;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 24px;
+}
+
+.section-number {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  color: var(--teal);
+  background: var(--teal-light);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.section-heading h2 {
+  color: var(--navy);
+  font-size: 1.45rem;
+  line-height: 1.35;
+  letter-spacing: -0.4px;
+}
+
+.section-heading p {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.card {
+  padding: 30px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+
+/* ========================================
+   6. EDUCATION
+======================================== */
+
+.education-list {
+  display: grid;
+  gap: 0;
+}
+
+.education-item {
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid var(--border);
+}
+
+.education-item:last-of-type {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.item-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.education-item h3 {
+  color: var(--navy);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.institution {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.91rem;
+}
+
+.education-detail {
+  margin-top: 8px;
+  color: #536176;
+  font-size: 0.9rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: #43556c;
+  background: #f0f4f9;
+  font-size: 0.77rem;
+  font-weight: 650;
+}
+
+.item-header > .tag {
+  flex-shrink: 0;
+}
+
+.coursework {
+  padding-top: 23px;
+  margin-top: 25px;
+  border-top: 1px solid var(--border);
+}
+
+.coursework h3 {
+  margin-bottom: 13px;
+  color: var(--navy);
+  font-size: 0.9rem;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+
+/* ========================================
+   7. TECHNICAL SKILLS
+======================================== */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.skill-card {
+  padding: 22px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+  border-color: #c4e4de;
+  box-shadow: var(--shadow);
+}
+
+.skill-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+  color: var(--navy);
+  font-size: 0.96rem;
+}
+
+.skill-card h3::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
+.skill-card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+
+/* ========================================
+   8. WORK EXPERIENCE
+======================================== */
+
+.experience-list {
+  display: grid;
+  gap: 20px;
+}
+
+.job {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.job:hover {
+  border-color: #d0dedf;
+}
+
+.job-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.job h3 {
+  color: var(--navy);
+  font-size: 1.08rem;
+  line-height: 1.5;
+}
+
+.job-company {
+  margin-top: 4px;
+  color: var(--teal);
+  font-size: 0.94rem;
+  font-weight: 750;
+}
+
+.job-date {
+  flex-shrink: 0;
+  padding: 6px 11px;
+  border-radius: 6px;
+  color: #40536a;
+  background: #f0f4f9;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.job-duties {
+  display: grid;
+  gap: 11px;
+  padding: 0;
+  list-style: none;
+}
+
+.job-duties li {
+  position: relative;
+  padding-left: 21px;
+  color: #536176;
+  font-size: 0.91rem;
+  line-height: 1.8;
+}
+
+.job-duties li::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
+
+/* ========================================
+   9. AVAILABILITY
+======================================== */
+
+.availability-card {
+  padding: 34px;
+  background: #e8f5f2;
+  border: 1px solid #d1eae5;
+  border-radius: 14px;
+}
+
+.availability-label {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #16756d;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.availability-card h2 {
+  margin-bottom: 10px;
+  color: var(--navy);
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.availability-card > p {
+  max-width: 680px;
+  margin-bottom: 22px;
+  color: #536b70;
+  font-size: 0.93rem;
+}
+
+.availability-list {
+  display: grid;
+  gap: 13px;
+  list-style: none;
+}
+
+.availability-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  color: #2d5052;
+  font-size: 0.91rem;
+}
+
+.checkmark {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  border-radius: 50%;
+  color: #126a60;
+  background: #c9eae3;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+
+/* ========================================
+   10. FOOTER
+======================================== */
+
+.site-footer {
+  padding: 28px 0;
+  color: #d0d9e6;
+  background: var(--navy);
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.footer-note {
+  margin-top: 5px;
+  color: #aab9cb;
+  font-size: 0.8rem;
+}
+
+
+/* ========================================
+   11. ANIMATIONS
+======================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* ========================================
+   12. TABLET RESPONSIVENESS
+======================================== */
+
+@media (max-width: 760px) {
+  .navbar {
+    min-height: 68px;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+  }
+
+  .hero {
+    padding: 75px 0 70px;
+  }
+
+  .page-content {
+    padding-top: 48px;
+    padding-bottom: 55px;
+  }
+
+  .section {
+    margin-bottom: 43px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .availability-card {
+    padding: 28px;
+  }
+}
+
+
+/* ========================================
+   13. MOBILE RESPONSIVENESS
+======================================== */
+
+@media (max-width: 540px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  .navbar {
+    min-height: 64px;
+    gap: 10px;
+  }
+
+  .brand {
+    font-size: 0.92rem;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links li:nth-child(1),
+  .nav-links li:nth-child(2) {
+    display: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+  }
+
+  .hero {
+    padding: 58px 0 55px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.25rem, 10vw, 3.1rem);
+    letter-spacing: -1.3px;
+  }
+
+  .hero-description {
+    font-size: 0.94rem;
+    line-height: 1.85;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .section-heading {
+    gap: 12px;
+  }
+
+  .section-heading h2 {
+    font-size: 1.25rem;
+  }
+
+  .section-heading p {
+    font-size: 0.8rem;
+  }
+
+  .section-number {
+    width: 41px;
+    height: 41px;
+  }
+
+  .card {
+    padding: 20px 17px;
+  }
+
+  .item-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .education-item h3 {
+    font-size: 1rem;
+  }
+
+  .tag-list {
+    gap: 7px;
+  }
+
+  .tag {
+    font-size: 0.74rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .skill-card {
+    padding: 19px;
+  }
+
+  .job-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .job-date {
+    align-self: flex-start;
+  }
+
+  .job-duties li {
+    font-size: 0.87rem;
+    line-height: 1.75;
+  }
+
+  .availability-card {
+    padding: 24px 19px;
+  }
+
+  .availability-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .availability-list li {
+    font-size: 0.87rem;
+  }
+}
+
+
+/* ========================================
+   14. PRINT / SAVE AS PDF
+======================================== */
+
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  body {
+    color: #202b39;
+    background: white;
+    font-size: 10pt;
+    line-height: 1.5;
+  }
+
+  .site-header,
+  .hero-actions,
+  .site-footer {
+    display: none !important;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero {
+    padding: 0 0 20px;
+    color: var(--navy);
+    background: white;
+  }
+
+  .hero::before {
+    display: none;
+  }
+
+  .hero h1 {
+    margin-bottom: 10px;
+    font-size: 26pt;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 span,
+  .eyebrow {
+    color: var(--teal);
+  }
+
+  .location,
+  .hero-description {
+    color: #39485a;
+  }
+
+  .hero-description {
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+
+  .page-content {
+    padding: 15px 0 0;
+  }
+
+  .section {
+    margin-bottom: 22px;
+    break-inside: auto;
+  }
+
+  .section-heading {
+    margin-bottom: 12px;
+  }
+
+  .section-heading h2 {
+    font-size: 14pt;
+  }
+
+  .card,
+  .job,
+  .skill-card,
+  .availability-card {
+    box-shadow: none;
+    break-inside: avoid;
+    border: 1px solid #d9e0e8;
+  }
+
+  .card,
+  .job {
+    padding: 15px;
+  }
+
+  .job-duties {
+    gap: 5px;
+  }
+
+  .job-duties li {
+    color: #354154;
+    font-size: 9pt;
+    line-height: 1.5;
+  }
+
+  .skills-grid {
+    gap: 8px;
+  }
+
+  .skill-card {
+    padding: 12px;
+  }
+
+  .availability-card {
+    padding: 18px;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
